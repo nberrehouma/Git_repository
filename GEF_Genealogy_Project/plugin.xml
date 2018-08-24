@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<?eclipse version="3.4"?>
+<plugin>
+   <extension
+         id="gef_genealogy_view"
+         name="Genealogy View"
+         point="org.eclipse.ui.views">
+      <category
+            id="GEF_Genealogy_Project_Category"
+            name="Genealogy">
+      </category>
+      <view
+            category="GEF_Genealogy_Project_Category"
+            class="gef_genealogy_project.GenealogyViewPart"
+            id="GEF_Genealogy_Project.view1"
+            name="Genealogy View"
+            restorable="true">
+      </view>
+   </extension>
+
+</plugin>
