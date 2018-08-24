@@ -1,10 +1,14 @@
 package gef_genealogy_project;
 
+import org.eclipse.draw2d.ChopboxAnchor;
 import org.eclipse.draw2d.ColorConstants;
+import org.eclipse.draw2d.Connection;
 import org.eclipse.draw2d.Figure;
 import org.eclipse.draw2d.IFigure;
 import org.eclipse.draw2d.Label;
 import org.eclipse.draw2d.LightweightSystem;
+import org.eclipse.draw2d.PolygonShape;
+import org.eclipse.draw2d.PolylineConnection;
 import org.eclipse.draw2d.RectangleFigure;
 import org.eclipse.draw2d.ToolbarLayout;
 import org.eclipse.draw2d.XYLayout;
@@ -67,13 +71,28 @@ public class GenealogyView {
 		IFigure marriage = createMarriageFigure();
 		root.add(marriage, new Rectangle(new Point(145, 35), marriage.getPreferredSize()));
 
+		root.add(connect(andy, marriage));
+		root.add(connect(betty, marriage));
+		root.add(connect(carl, marriage));
+
 		return canvas;
 
 	}
 
 	private IFigure createMarriageFigure() {
-		// TODO Auto-generated method stub
-		return null;
+		Rectangle r = new Rectangle(0, 0, 50, 50);
+		PolygonShape polygonShape = new PolygonShape();
+		polygonShape.setStart(r.getTop());
+		polygonShape.addPoint(r.getTop());
+		polygonShape.addPoint(r.getLeft());
+		polygonShape.addPoint(r.getBottom());
+		polygonShape.addPoint(r.getRight());
+		polygonShape.addPoint(r.getTop());
+		polygonShape.setEnd(r.getTop());
+		polygonShape.setFill(true);
+		polygonShape.setBackgroundColor(ColorConstants.lightGray);
+		polygonShape.setPreferredSize(r.getSize());
+		return polygonShape;
 	}
 
 	private IFigure createPersonFigure(String name) {
@@ -83,5 +102,12 @@ public class GenealogyView {
 		rectangleFigure.setPreferredSize(100, 100);
 		rectangleFigure.add(new Label(name));
 		return rectangleFigure;
+	}
+
+	private Connection connect(IFigure figure1, IFigure figure2) {
+		PolylineConnection connection = new PolylineConnection();
+		connection.setSourceAnchor(new ChopboxAnchor(figure1));
+		connection.setTargetAnchor(new ChopboxAnchor(figure2));
+		return connection;
 	}
 }
