@@ -2,8 +2,14 @@ package gef_genealogy_project;
 
 import org.eclipse.draw2d.ColorConstants;
 import org.eclipse.draw2d.Figure;
+import org.eclipse.draw2d.IFigure;
+import org.eclipse.draw2d.Label;
 import org.eclipse.draw2d.LightweightSystem;
+import org.eclipse.draw2d.RectangleFigure;
+import org.eclipse.draw2d.ToolbarLayout;
 import org.eclipse.draw2d.XYLayout;
+import org.eclipse.draw2d.geometry.Point;
+import org.eclipse.draw2d.geometry.Rectangle;
 import org.eclipse.swt.SWT;
 import org.eclipse.swt.layout.GridData;
 import org.eclipse.swt.layout.GridLayout;
@@ -45,7 +51,29 @@ public class GenealogyView {
 		canvas.setBackground(ColorConstants.white);
 		LightweightSystem lws = new LightweightSystem(canvas);
 		lws.setContents(root);
+		// Add the father "Andy"
+		IFigure andy = createPersonFigure("Andy");
+		root.add(andy);
+		layout.setConstraint(andy, new Rectangle(new Point(10, 10), andy.getPreferredSize()));
+		// Add the mother "Betty"
+		IFigure betty = createPersonFigure("Betty");
+		root.add(betty);
+		layout.setConstraint(betty, new Rectangle(new Point(230, 10), betty.getPreferredSize()));
+		// Add the son "Carl"
+		IFigure carl = createPersonFigure("Carl");
+		root.add(carl);
+		layout.setConstraint(carl, new Rectangle(new Point(120, 120), carl.getPreferredSize()));
+
 		return canvas;
+
 	}
 
+	private IFigure createPersonFigure(String name) {
+		RectangleFigure rectangleFigure = new RectangleFigure();
+		rectangleFigure.setBackgroundColor(ColorConstants.lightGray);
+		rectangleFigure.setLayoutManager(new ToolbarLayout());
+		rectangleFigure.setPreferredSize(100, 100);
+		rectangleFigure.add(new Label(name));
+		return rectangleFigure;
+	}
 }
