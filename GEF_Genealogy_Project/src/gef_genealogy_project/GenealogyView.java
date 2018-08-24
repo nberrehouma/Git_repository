@@ -64,8 +64,16 @@ public class GenealogyView {
 		root.add(carl);
 		layout.setConstraint(carl, new Rectangle(new Point(120, 120), carl.getPreferredSize()));
 
+		IFigure marriage = createMarriageFigure();
+		root.add(marriage, new Rectangle(new Point(145, 35), marriage.getPreferredSize()));
+
 		return canvas;
 
+	}
+
+	private IFigure createMarriageFigure() {
+		// TODO Auto-generated method stub
+		return null;
 	}
 
 	private IFigure createPersonFigure(String name) {
