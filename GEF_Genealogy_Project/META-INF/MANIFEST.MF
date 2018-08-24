@@ -1,7 +1,7 @@
 Manifest-Version: 1.0
 Bundle-ManifestVersion: 2
 Bundle-Name: GEF_Genealogy_Project
-Bundle-SymbolicName: GEF_Genealogy_Project
+Bundle-SymbolicName: GEF_Genealogy_Project;singleton:=true
 Bundle-Version: 1.0.0.qualifier
 Bundle-Activator: gef_genealogy_project.Activator
 Bundle-Vendor: Nabil

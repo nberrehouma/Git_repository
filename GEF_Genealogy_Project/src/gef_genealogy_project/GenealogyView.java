@@ -30,7 +30,7 @@ public class GenealogyView {
 	private void run() {
 		Shell shell = new Shell(new Display());
 		shell.setSize(365, 280);
-		shell.setText("Genealogy");
+		shell.setText(" application de Genealogie");
 		shell.setLayout(new GridLayout());
 		Canvas canvas = createDiagram(shell);
 		canvas.setLayoutData(new GridData(GridData.FILL_BOTH));
