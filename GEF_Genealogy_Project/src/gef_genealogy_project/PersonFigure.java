@@ -6,7 +6,6 @@ import org.eclipse.draw2d.Label;
 import org.eclipse.draw2d.LineBorder;
 import org.eclipse.draw2d.RectangleFigure;
 import org.eclipse.draw2d.ToolbarLayout;
-import org.eclipse.draw2d.geometry.Insets;
 import org.eclipse.draw2d.geometry.Rectangle;
 import org.eclipse.swt.graphics.Pattern;
 import org.eclipse.swt.widgets.Display;
@@ -23,19 +22,8 @@ public class PersonFigure extends RectangleFigure {
 			datesText += " " + deathYear;
 		add(new Label(datesText));
 
-		Label noteLabel = new Label(note) {
-			@Override
-			protected void paintBorder(Graphics graphics) {
-				Rectangle r = getBounds();
-				graphics.drawLine(r.x, r.y, r.x + r.width, r.y);
-			}
-
-			@Override
-			public Insets getInsets() {
-				// top, left, bottom, right
-				return new Insets(2, 0, 0, 0);
-			}
-		};
+		Label noteLabel = new Label(note);
+		noteLabel.setBorder(new NoteBorder());
 		add(noteLabel);
 		new FigureMover(this);
 	}
