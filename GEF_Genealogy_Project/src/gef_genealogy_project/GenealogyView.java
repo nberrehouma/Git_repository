@@ -5,12 +5,9 @@ import org.eclipse.draw2d.ColorConstants;
 import org.eclipse.draw2d.Connection;
 import org.eclipse.draw2d.Figure;
 import org.eclipse.draw2d.IFigure;
-import org.eclipse.draw2d.Label;
 import org.eclipse.draw2d.LightweightSystem;
 import org.eclipse.draw2d.PolygonShape;
 import org.eclipse.draw2d.PolylineConnection;
-import org.eclipse.draw2d.RectangleFigure;
-import org.eclipse.draw2d.ToolbarLayout;
 import org.eclipse.draw2d.XYLayout;
 import org.eclipse.draw2d.geometry.Point;
 import org.eclipse.draw2d.geometry.Rectangle;
@@ -56,20 +53,20 @@ public class GenealogyView {
 		LightweightSystem lws = new LightweightSystem(canvas);
 		lws.setContents(root);
 		// Add the father "Andy"
-		IFigure andy = createPersonFigure("Andy");
+		IFigure andy = new PersonFigure("Andy", 1922, 2002, "Andy was a\ngood man.");// createPersonFigure("Andy");
 		root.add(andy);
 		layout.setConstraint(andy, new Rectangle(new Point(10, 10), andy.getPreferredSize()));
 		// Add the mother "Betty"
-		IFigure betty = createPersonFigure("Betty");
+		IFigure betty = new PersonFigure("Betty", 1924, 2006, "Betty was a\ngood woman.");// createPersonFigure("Betty");
 
 		root.add(betty);
 		layout.setConstraint(betty, new Rectangle(new Point(230, 10), betty.getPreferredSize()));
 		// Add the son "Carl"
-		IFigure carl = createPersonFigure("Carl");
+		IFigure carl = new PersonFigure("Carl", 1947, -1, "Carl is a\ngood man.");// createPersonFigure("Carl");
 		root.add(carl);
 		layout.setConstraint(carl, new Rectangle(new Point(120, 120), carl.getPreferredSize()));
 
-		IFigure marriage = createMarriageFigure();
+		IFigure marriage = new MarriageFigure();// createMarriageFigure();
 
 		root.add(marriage, new Rectangle(new Point(145, 35), marriage.getPreferredSize()));
 
@@ -97,16 +94,6 @@ public class GenealogyView {
 
 		new FigureMover(polygonShape);
 		return polygonShape;
-	}
-
-	private IFigure createPersonFigure(String name) {
-		RectangleFigure rectangleFigure = new RectangleFigure();
-		rectangleFigure.setBackgroundColor(ColorConstants.lightGray);
-		rectangleFigure.setLayoutManager(new ToolbarLayout());
-		rectangleFigure.setPreferredSize(100, 100);
-		rectangleFigure.add(new Label(name));
-		new FigureMover(rectangleFigure);
-		return rectangleFigure;
 	}
 
 	private Connection connect(IFigure figure1, IFigure figure2) {
