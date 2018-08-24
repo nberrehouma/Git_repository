@@ -9,6 +9,7 @@ import org.eclipse.draw2d.LightweightSystem;
 import org.eclipse.draw2d.PolygonShape;
 import org.eclipse.draw2d.PolylineConnection;
 import org.eclipse.draw2d.XYLayout;
+import org.eclipse.draw2d.geometry.Dimension;
 import org.eclipse.draw2d.geometry.Point;
 import org.eclipse.draw2d.geometry.Rectangle;
 import org.eclipse.swt.SWT;
@@ -73,7 +74,11 @@ public class GenealogyView {
 		root.add(connect(andy, marriage));
 		root.add(connect(betty, marriage));
 		root.add(connect(carl, marriage));
-
+		NoteFigure note = new NoteFigure("Smith Family");
+		note.setFont(parent.getFont());
+		final Dimension noteSize = note.getPreferredSize();
+		new FigureMover(note);
+		root.add(note, new Rectangle(new Point(10, 220 - noteSize.height), noteSize));
 		return canvas;
 
 	}

@@ -22,9 +22,7 @@ public class PersonFigure extends RectangleFigure {
 			datesText += " " + deathYear;
 		add(new Label(datesText));
 
-		Label noteLabel = new Label(note);
-		noteLabel.setBorder(new NoteBorder());
-		add(noteLabel);
+		add(new NoteFigure(note));
 		new FigureMover(this);
 	}
 
