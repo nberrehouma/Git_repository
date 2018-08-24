@@ -61,6 +61,7 @@ public class GenealogyView {
 		layout.setConstraint(andy, new Rectangle(new Point(10, 10), andy.getPreferredSize()));
 		// Add the mother "Betty"
 		IFigure betty = createPersonFigure("Betty");
+
 		root.add(betty);
 		layout.setConstraint(betty, new Rectangle(new Point(230, 10), betty.getPreferredSize()));
 		// Add the son "Carl"
@@ -69,6 +70,7 @@ public class GenealogyView {
 		layout.setConstraint(carl, new Rectangle(new Point(120, 120), carl.getPreferredSize()));
 
 		IFigure marriage = createMarriageFigure();
+
 		root.add(marriage, new Rectangle(new Point(145, 35), marriage.getPreferredSize()));
 
 		root.add(connect(andy, marriage));
@@ -92,6 +94,8 @@ public class GenealogyView {
 		polygonShape.setFill(true);
 		polygonShape.setBackgroundColor(ColorConstants.lightGray);
 		polygonShape.setPreferredSize(r.getSize());
+
+		new FigureMover(polygonShape);
 		return polygonShape;
 	}
 
@@ -101,6 +105,7 @@ public class GenealogyView {
 		rectangleFigure.setLayoutManager(new ToolbarLayout());
 		rectangleFigure.setPreferredSize(100, 100);
 		rectangleFigure.add(new Label(name));
+		new FigureMover(rectangleFigure);
 		return rectangleFigure;
 	}
 
