@@ -1,0 +1,13 @@
+Manifest-Version: 1.0
+Bundle-ManifestVersion: 2
+Bundle-Name: GEF_Genealogy_Project
+Bundle-SymbolicName: GEF_Genealogy_Project
+Bundle-Version: 1.0.0.qualifier
+Bundle-Activator: gef_genealogy_project.Activator
+Bundle-Vendor: Nabil
+Require-Bundle: org.eclipse.ui,
+ org.eclipse.core.runtime,
+ org.eclipse.draw2d;bundle-version="3.10.100"
+Bundle-RequiredExecutionEnvironment: JavaSE-1.8
+Automatic-Module-Name: GEF_Genealogy_Project
+Bundle-ActivationPolicy: lazy
