@@ -1,0 +1,59 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<genmodel:GenModel xmi:version="2.0" xmlns:xmi="http://www.omg.org/XMI" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xmlns:ecore="http://www.eclipse.org/emf/2002/Ecore" xmlns:genmodel="http://www.eclipse.org/emf/2002/GenModel"
+    modelDirectory="/GenalogyModel/src-gen" creationIcons="false" editDirectory="/GenalogyModel.edit/src-gen"
+    editorDirectory="/GenalogyModel.editor/src-gen" modelPluginID="GenalogyModel"
+    modelName="GenalogyModel" rootExtendsClass="org.eclipse.emf.ecore.impl.MinimalEObjectImpl$Container"
+    codeFormatting="true" importerID="org.eclipse.emf.importer.ecore" complianceLevel="8.0"
+    copyrightFields="false" operationReflection="true" importOrganizing="true">
+  <foreignModel>genalogyModel.ecore</foreignModel>
+  <testsDirectory xsi:nil="true"/>
+  <genPackages prefix="GenalogyModel" disposableProviderFactory="true" ecorePackage="genalogyModel.ecore#/">
+    <genEnums typeSafeEnumCompatible="false" ecoreEnum="genalogyModel.ecore#//Gender">
+      <genEnumLiterals ecoreEnumLiteral="genalogyModel.ecore#//Gender/man"/>
+      <genEnumLiterals ecoreEnumLiteral="genalogyModel.ecore#//Gender/woman"/>
+    </genEnums>
+    <genClasses ecoreClass="genalogyModel.ecore#//GenealogyGraph">
+      <genFeatures children="true" createChild="true" propertySortChoices="true" ecoreFeature="ecore:EReference genalogyModel.ecore#//GenealogyGraph/persons"/>
+      <genFeatures children="true" createChild="true" propertySortChoices="true" ecoreFeature="ecore:EReference genalogyModel.ecore#//GenealogyGraph/notes"/>
+      <genFeatures children="true" createChild="true" propertySortChoices="true" ecoreFeature="ecore:EReference genalogyModel.ecore#//GenealogyGraph/marriages"/>
+    </genClasses>
+    <genClasses ecoreClass="genalogyModel.ecore#//NoteContainer">
+      <genOperations ecoreOperation="genalogyModel.ecore#//NoteContainer/addNote">
+        <genParameters ecoreParameter="genalogyModel.ecore#//NoteContainer/addNote/note"/>
+      </genOperations>
+      <genOperations ecoreOperation="genalogyModel.ecore#//NoteContainer/removeNote">
+        <genParameters ecoreParameter="genalogyModel.ecore#//NoteContainer/removeNote/note"/>
+      </genOperations>
+      <genOperations ecoreOperation="genalogyModel.ecore#//NoteContainer/getNotes"/>
+      <genOperations ecoreOperation="genalogyModel.ecore#//NoteContainer/removeAllNotes"/>
+    </genClasses>
+    <genClasses ecoreClass="genalogyModel.ecore#//GenealogyElement">
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute genalogyModel.ecore#//GenealogyElement/x"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute genalogyModel.ecore#//GenealogyElement/y"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute genalogyModel.ecore#//GenealogyElement/width"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute genalogyModel.ecore#//GenealogyElement/height"/>
+    </genClasses>
+    <genClasses ecoreClass="genalogyModel.ecore#//Person">
+      <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference genalogyModel.ecore#//Person/genealogygraph"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute genalogyModel.ecore#//Person/name"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute genalogyModel.ecore#//Person/gender"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute genalogyModel.ecore#//Person/birthYear"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute genalogyModel.ecore#//Person/deathYear"/>
+      <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference genalogyModel.ecore#//Person/marriage"/>
+      <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference genalogyModel.ecore#//Person/ParentsMarriage"/>
+      <genFeatures children="true" createChild="true" propertySortChoices="true" ecoreFeature="ecore:EReference genalogyModel.ecore#//Person/note"/>
+    </genClasses>
+    <genClasses ecoreClass="genalogyModel.ecore#//Marriage">
+      <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference genalogyModel.ecore#//Marriage/genealogygraph"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute genalogyModel.ecore#//Marriage/yearMarried"/>
+      <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference genalogyModel.ecore#//Marriage/hasbend"/>
+      <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference genalogyModel.ecore#//Marriage/wife"/>
+      <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference genalogyModel.ecore#//Marriage/offspring"/>
+    </genClasses>
+    <genClasses ecoreClass="genalogyModel.ecore#//Note">
+      <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference genalogyModel.ecore#//Note/genealogygraph"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute genalogyModel.ecore#//Note/text"/>
+    </genClasses>
+  </genPackages>
+</genmodel:GenModel>

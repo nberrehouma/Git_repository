@@ -1,0 +1,61 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ecore:EPackage xmi:version="2.0" xmlns:xmi="http://www.omg.org/XMI" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xmlns:ecore="http://www.eclipse.org/emf/2002/Ecore" name="genalogyModel" nsURI="http://www.example.org/genalogyModel"
+    nsPrefix="genalogyModel">
+  <eClassifiers xsi:type="ecore:EClass" name="GenealogyGraph">
+    <eStructuralFeatures xsi:type="ecore:EReference" name="persons" upperBound="-1"
+        eType="#//Person" containment="true" eOpposite="#//Person/genealogygraph"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="notes" upperBound="-1"
+        eType="#//Note" containment="true" eOpposite="#//Note/genealogygraph"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="marriages" upperBound="-1"
+        eType="#//Marriage" containment="true" eOpposite="#//Marriage/genealogygraph"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="NoteContainer" abstract="true" interface="true">
+    <eOperations name="addNote">
+      <eParameters name="note" eType="#//Note"/>
+    </eOperations>
+    <eOperations name="removeNote">
+      <eParameters name="note" eType="#//Note"/>
+    </eOperations>
+    <eOperations name="getNotes" upperBound="-1" eType="#//Note"/>
+    <eOperations name="removeAllNotes"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="GenealogyElement" abstract="true">
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="x" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EInt"/>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="y" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EInt"/>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="width" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EInt"/>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="height" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EInt"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="Person" eSuperTypes="#//GenealogyElement">
+    <eStructuralFeatures xsi:type="ecore:EReference" name="genealogygraph" eType="#//GenealogyGraph"
+        eOpposite="#//GenealogyGraph/persons"/>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="name" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="gender" eType="#//Gender"/>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="birthYear" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EInt"/>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="deathYear" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EInt"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="marriage" eType="#//Marriage"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="ParentsMarriage" lowerBound="1"
+        eType="#//Marriage" eOpposite="#//Marriage/offspring"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="note" upperBound="-1" eType="#//Note"
+        containment="true"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="Marriage" eSuperTypes="#//GenealogyElement">
+    <eStructuralFeatures xsi:type="ecore:EReference" name="genealogygraph" eType="#//GenealogyGraph"
+        eOpposite="#//GenealogyGraph/marriages"/>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="yearMarried" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EInt"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="hasbend" lowerBound="1"
+        eType="#//Person"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="wife" lowerBound="1" eType="#//Person"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="offspring" upperBound="-1"
+        eType="#//Person" eOpposite="#//Person/ParentsMarriage"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="Note" eSuperTypes="#//GenealogyElement">
+    <eStructuralFeatures xsi:type="ecore:EReference" name="genealogygraph" eType="#//GenealogyGraph"
+        eOpposite="#//GenealogyGraph/notes"/>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="text" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EEnum" name="Gender">
+    <eLiterals name="man"/>
+    <eLiterals name="woman" value="1"/>
+  </eClassifiers>
+</ecore:EPackage>
