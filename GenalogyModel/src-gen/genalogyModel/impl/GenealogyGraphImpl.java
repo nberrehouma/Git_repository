@@ -2,46 +2,44 @@
  */
 package genalogyModel.impl;
 
+import java.util.Collection;
+
+import org.eclipse.emf.common.notify.NotificationChain;
+import org.eclipse.emf.common.util.EList;
+import org.eclipse.emf.ecore.EClass;
+import org.eclipse.emf.ecore.InternalEObject;
+import org.eclipse.emf.ecore.impl.MinimalEObjectImpl;
+import org.eclipse.emf.ecore.util.EObjectContainmentWithInverseEList;
+import org.eclipse.emf.ecore.util.InternalEList;
+
 import genalogyModel.GenalogyModelPackage;
 import genalogyModel.GenealogyGraph;
 import genalogyModel.Marriage;
 import genalogyModel.Note;
 import genalogyModel.Person;
 
-import java.util.Collection;
-
-import org.eclipse.emf.common.notify.NotificationChain;
-
-import org.eclipse.emf.common.util.EList;
-
-import org.eclipse.emf.ecore.EClass;
-import org.eclipse.emf.ecore.InternalEObject;
-
-import org.eclipse.emf.ecore.impl.MinimalEObjectImpl;
-
-import org.eclipse.emf.ecore.util.EObjectContainmentWithInverseEList;
-import org.eclipse.emf.ecore.util.InternalEList;
-
 /**
- * <!-- begin-user-doc -->
- * An implementation of the model object '<em><b>Genealogy Graph</b></em>'.
- * <!-- end-user-doc -->
+ * <!-- begin-user-doc --> An implementation of the model object
+ * '<em><b>Genealogy Graph</b></em>'. <!-- end-user-doc -->
  * <p>
  * The following features are implemented:
  * </p>
  * <ul>
- *   <li>{@link genalogyModel.impl.GenealogyGraphImpl#getPersons <em>Persons</em>}</li>
- *   <li>{@link genalogyModel.impl.GenealogyGraphImpl#getNotes <em>Notes</em>}</li>
- *   <li>{@link genalogyModel.impl.GenealogyGraphImpl#getMarriages <em>Marriages</em>}</li>
+ * <li>{@link genalogyModel.impl.GenealogyGraphImpl#getPersons
+ * <em>Persons</em>}</li>
+ * <li>{@link genalogyModel.impl.GenealogyGraphImpl#getNotes
+ * <em>Notes</em>}</li>
+ * <li>{@link genalogyModel.impl.GenealogyGraphImpl#getMarriages
+ * <em>Marriages</em>}</li>
  * </ul>
  *
  * @generated
  */
 public class GenealogyGraphImpl extends MinimalEObjectImpl.Container implements GenealogyGraph {
 	/**
-	 * The cached value of the '{@link #getPersons() <em>Persons</em>}' containment reference list.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+	 * The cached value of the '{@link #getPersons() <em>Persons</em>}' containment
+	 * reference list. <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @see #getPersons()
 	 * @generated
 	 * @ordered
@@ -49,9 +47,9 @@ public class GenealogyGraphImpl extends MinimalEObjectImpl.Container implements 
 	protected EList<Person> persons;
 
 	/**
-	 * The cached value of the '{@link #getNotes() <em>Notes</em>}' containment reference list.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+	 * The cached value of the '{@link #getNotes() <em>Notes</em>}' containment
+	 * reference list. <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @see #getNotes()
 	 * @generated
 	 * @ordered
@@ -59,9 +57,9 @@ public class GenealogyGraphImpl extends MinimalEObjectImpl.Container implements 
 	protected EList<Note> notes;
 
 	/**
-	 * The cached value of the '{@link #getMarriages() <em>Marriages</em>}' containment reference list.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+	 * The cached value of the '{@link #getMarriages() <em>Marriages</em>}'
+	 * containment reference list. <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @see #getMarriages()
 	 * @generated
 	 * @ordered
@@ -69,8 +67,8 @@ public class GenealogyGraphImpl extends MinimalEObjectImpl.Container implements 
 	protected EList<Marriage> marriages;
 
 	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	protected GenealogyGraphImpl() {
@@ -78,8 +76,8 @@ public class GenealogyGraphImpl extends MinimalEObjectImpl.Container implements 
 	}
 
 	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	@Override
@@ -88,10 +86,11 @@ public class GenealogyGraphImpl extends MinimalEObjectImpl.Container implements 
 	}
 
 	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
+	@Override
 	public EList<Person> getPersons() {
 		if (persons == null) {
 			persons = new EObjectContainmentWithInverseEList<Person>(Person.class, this,
@@ -101,10 +100,11 @@ public class GenealogyGraphImpl extends MinimalEObjectImpl.Container implements 
 	}
 
 	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
+	@Override
 	public EList<Note> getNotes() {
 		if (notes == null) {
 			notes = new EObjectContainmentWithInverseEList<Note>(Note.class, this,
@@ -114,10 +114,11 @@ public class GenealogyGraphImpl extends MinimalEObjectImpl.Container implements 
 	}
 
 	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
+	@Override
 	public EList<Marriage> getMarriages() {
 		if (marriages == null) {
 			marriages = new EObjectContainmentWithInverseEList<Marriage>(Marriage.class, this,
@@ -127,8 +128,8 @@ public class GenealogyGraphImpl extends MinimalEObjectImpl.Container implements 
 	}
 
 	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	@SuppressWarnings("unchecked")
@@ -146,8 +147,8 @@ public class GenealogyGraphImpl extends MinimalEObjectImpl.Container implements 
 	}
 
 	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	@Override
@@ -164,8 +165,8 @@ public class GenealogyGraphImpl extends MinimalEObjectImpl.Container implements 
 	}
 
 	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	@Override
@@ -182,8 +183,8 @@ public class GenealogyGraphImpl extends MinimalEObjectImpl.Container implements 
 	}
 
 	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	@SuppressWarnings("unchecked")
@@ -207,8 +208,8 @@ public class GenealogyGraphImpl extends MinimalEObjectImpl.Container implements 
 	}
 
 	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	@Override
@@ -228,8 +229,8 @@ public class GenealogyGraphImpl extends MinimalEObjectImpl.Container implements 
 	}
 
 	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	@Override
@@ -245,4 +246,22 @@ public class GenealogyGraphImpl extends MinimalEObjectImpl.Container implements 
 		return super.eIsSet(featureID);
 	}
 
-} //GenealogyGraphImpl
+	@Override
+	public void addNote(Note note) {
+		// TODO Auto-generated method stub
+
+	}
+
+	@Override
+	public void removeNote(Note note) {
+		// TODO Auto-generated method stub
+
+	}
+
+	@Override
+	public void removeAllNotes() {
+		// TODO Auto-generated method stub
+
+	}
+
+} // GenealogyGraphImpl

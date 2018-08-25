@@ -1,0 +1,5 @@
+<?xml version="1.0" encoding="ASCII"?>
+<genalogyModel:GenealogyGraph xmi:version="2.0" xmlns:xmi="http://www.omg.org/XMI" xmlns:genalogyModel="http://www.example.org/genalogyModel">
+  <persons name="nabil"/>
+  <persons name="said"/>
+</genalogyModel:GenealogyGraph>

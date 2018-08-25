@@ -2,6 +2,18 @@
  */
 package genalogyModel.impl;
 
+import java.util.Collection;
+
+import org.eclipse.emf.common.notify.Notification;
+import org.eclipse.emf.common.notify.NotificationChain;
+import org.eclipse.emf.common.util.EList;
+import org.eclipse.emf.ecore.EClass;
+import org.eclipse.emf.ecore.InternalEObject;
+import org.eclipse.emf.ecore.impl.ENotificationImpl;
+import org.eclipse.emf.ecore.util.EObjectContainmentEList;
+import org.eclipse.emf.ecore.util.EcoreUtil;
+import org.eclipse.emf.ecore.util.InternalEList;
+
 import genalogyModel.GenalogyModelPackage;
 import genalogyModel.Gender;
 import genalogyModel.GenealogyGraph;
@@ -9,47 +21,34 @@ import genalogyModel.Marriage;
 import genalogyModel.Note;
 import genalogyModel.Person;
 
-import java.util.Collection;
-
-import org.eclipse.emf.common.notify.Notification;
-import org.eclipse.emf.common.notify.NotificationChain;
-
-import org.eclipse.emf.common.util.EList;
-
-import org.eclipse.emf.ecore.EClass;
-import org.eclipse.emf.ecore.InternalEObject;
-
-import org.eclipse.emf.ecore.impl.ENotificationImpl;
-
-import org.eclipse.emf.ecore.util.EObjectContainmentEList;
-import org.eclipse.emf.ecore.util.EcoreUtil;
-import org.eclipse.emf.ecore.util.InternalEList;
-
 /**
- * <!-- begin-user-doc -->
- * An implementation of the model object '<em><b>Person</b></em>'.
- * <!-- end-user-doc -->
+ * <!-- begin-user-doc --> An implementation of the model object
+ * '<em><b>Person</b></em>'. <!-- end-user-doc -->
  * <p>
  * The following features are implemented:
  * </p>
  * <ul>
- *   <li>{@link genalogyModel.impl.PersonImpl#getGenealogygraph <em>Genealogygraph</em>}</li>
- *   <li>{@link genalogyModel.impl.PersonImpl#getName <em>Name</em>}</li>
- *   <li>{@link genalogyModel.impl.PersonImpl#getGender <em>Gender</em>}</li>
- *   <li>{@link genalogyModel.impl.PersonImpl#getBirthYear <em>Birth Year</em>}</li>
- *   <li>{@link genalogyModel.impl.PersonImpl#getDeathYear <em>Death Year</em>}</li>
- *   <li>{@link genalogyModel.impl.PersonImpl#getMarriage <em>Marriage</em>}</li>
- *   <li>{@link genalogyModel.impl.PersonImpl#getParentsMarriage <em>Parents Marriage</em>}</li>
- *   <li>{@link genalogyModel.impl.PersonImpl#getNote <em>Note</em>}</li>
+ * <li>{@link genalogyModel.impl.PersonImpl#getGenealogygraph
+ * <em>Genealogygraph</em>}</li>
+ * <li>{@link genalogyModel.impl.PersonImpl#getName <em>Name</em>}</li>
+ * <li>{@link genalogyModel.impl.PersonImpl#getGender <em>Gender</em>}</li>
+ * <li>{@link genalogyModel.impl.PersonImpl#getBirthYear <em>Birth
+ * Year</em>}</li>
+ * <li>{@link genalogyModel.impl.PersonImpl#getDeathYear <em>Death
+ * Year</em>}</li>
+ * <li>{@link genalogyModel.impl.PersonImpl#getMarriage <em>Marriage</em>}</li>
+ * <li>{@link genalogyModel.impl.PersonImpl#getParentsMarriage <em>Parents
+ * Marriage</em>}</li>
+ * <li>{@link genalogyModel.impl.PersonImpl#getNote <em>Note</em>}</li>
  * </ul>
  *
  * @generated
  */
 public class PersonImpl extends GenealogyElementImpl implements Person {
 	/**
-	 * The default value of the '{@link #getName() <em>Name</em>}' attribute.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+	 * The default value of the '{@link #getName() <em>Name</em>}' attribute. <!--
+	 * begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @see #getName()
 	 * @generated
 	 * @ordered
@@ -57,9 +56,9 @@ public class PersonImpl extends GenealogyElementImpl implements Person {
 	protected static final String NAME_EDEFAULT = null;
 
 	/**
-	 * The cached value of the '{@link #getName() <em>Name</em>}' attribute.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+	 * The cached value of the '{@link #getName() <em>Name</em>}' attribute. <!--
+	 * begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @see #getName()
 	 * @generated
 	 * @ordered
@@ -68,8 +67,8 @@ public class PersonImpl extends GenealogyElementImpl implements Person {
 
 	/**
 	 * The default value of the '{@link #getGender() <em>Gender</em>}' attribute.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @see #getGender()
 	 * @generated
 	 * @ordered
@@ -78,8 +77,8 @@ public class PersonImpl extends GenealogyElementImpl implements Person {
 
 	/**
 	 * The cached value of the '{@link #getGender() <em>Gender</em>}' attribute.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @see #getGender()
 	 * @generated
 	 * @ordered
@@ -87,9 +86,9 @@ public class PersonImpl extends GenealogyElementImpl implements Person {
 	protected Gender gender = GENDER_EDEFAULT;
 
 	/**
-	 * The default value of the '{@link #getBirthYear() <em>Birth Year</em>}' attribute.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+	 * The default value of the '{@link #getBirthYear() <em>Birth Year</em>}'
+	 * attribute. <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @see #getBirthYear()
 	 * @generated
 	 * @ordered
@@ -97,9 +96,9 @@ public class PersonImpl extends GenealogyElementImpl implements Person {
 	protected static final int BIRTH_YEAR_EDEFAULT = 0;
 
 	/**
-	 * The cached value of the '{@link #getBirthYear() <em>Birth Year</em>}' attribute.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+	 * The cached value of the '{@link #getBirthYear() <em>Birth Year</em>}'
+	 * attribute. <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @see #getBirthYear()
 	 * @generated
 	 * @ordered
@@ -107,9 +106,9 @@ public class PersonImpl extends GenealogyElementImpl implements Person {
 	protected int birthYear = BIRTH_YEAR_EDEFAULT;
 
 	/**
-	 * The default value of the '{@link #getDeathYear() <em>Death Year</em>}' attribute.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+	 * The default value of the '{@link #getDeathYear() <em>Death Year</em>}'
+	 * attribute. <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @see #getDeathYear()
 	 * @generated
 	 * @ordered
@@ -117,9 +116,9 @@ public class PersonImpl extends GenealogyElementImpl implements Person {
 	protected static final int DEATH_YEAR_EDEFAULT = 0;
 
 	/**
-	 * The cached value of the '{@link #getDeathYear() <em>Death Year</em>}' attribute.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+	 * The cached value of the '{@link #getDeathYear() <em>Death Year</em>}'
+	 * attribute. <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @see #getDeathYear()
 	 * @generated
 	 * @ordered
@@ -128,8 +127,8 @@ public class PersonImpl extends GenealogyElementImpl implements Person {
 
 	/**
 	 * The cached value of the '{@link #getMarriage() <em>Marriage</em>}' reference.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @see #getMarriage()
 	 * @generated
 	 * @ordered
@@ -137,9 +136,9 @@ public class PersonImpl extends GenealogyElementImpl implements Person {
 	protected Marriage marriage;
 
 	/**
-	 * The cached value of the '{@link #getParentsMarriage() <em>Parents Marriage</em>}' reference.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+	 * The cached value of the '{@link #getParentsMarriage() <em>Parents
+	 * Marriage</em>}' reference. <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @see #getParentsMarriage()
 	 * @generated
 	 * @ordered
@@ -147,9 +146,9 @@ public class PersonImpl extends GenealogyElementImpl implements Person {
 	protected Marriage parentsMarriage;
 
 	/**
-	 * The cached value of the '{@link #getNote() <em>Note</em>}' containment reference list.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+	 * The cached value of the '{@link #getNote() <em>Note</em>}' containment
+	 * reference list. <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @see #getNote()
 	 * @generated
 	 * @ordered
@@ -157,8 +156,8 @@ public class PersonImpl extends GenealogyElementImpl implements Person {
 	protected EList<Note> note;
 
 	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	protected PersonImpl() {
@@ -166,8 +165,8 @@ public class PersonImpl extends GenealogyElementImpl implements Person {
 	}
 
 	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	@Override
@@ -176,10 +175,11 @@ public class PersonImpl extends GenealogyElementImpl implements Person {
 	}
 
 	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
+	@Override
 	public GenealogyGraph getGenealogygraph() {
 		if (eContainerFeatureID() != GenalogyModelPackage.PERSON__GENEALOGYGRAPH)
 			return null;
@@ -187,8 +187,8 @@ public class PersonImpl extends GenealogyElementImpl implements Person {
 	}
 
 	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	public NotificationChain basicSetGenealogygraph(GenealogyGraph newGenealogygraph, NotificationChain msgs) {
@@ -198,10 +198,11 @@ public class PersonImpl extends GenealogyElementImpl implements Person {
 	}
 
 	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
+	@Override
 	public void setGenealogygraph(GenealogyGraph newGenealogygraph) {
 		if (newGenealogygraph != eInternalContainer()
 				|| (eContainerFeatureID() != GenalogyModelPackage.PERSON__GENEALOGYGRAPH
@@ -223,19 +224,21 @@ public class PersonImpl extends GenealogyElementImpl implements Person {
 	}
 
 	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
+	@Override
 	public String getName() {
 		return name;
 	}
 
 	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
+	@Override
 	public void setName(String newName) {
 		String oldName = name;
 		name = newName;
@@ -244,19 +247,21 @@ public class PersonImpl extends GenealogyElementImpl implements Person {
 	}
 
 	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
+	@Override
 	public Gender getGender() {
 		return gender;
 	}
 
 	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
+	@Override
 	public void setGender(Gender newGender) {
 		Gender oldGender = gender;
 		gender = newGender == null ? GENDER_EDEFAULT : newGender;
@@ -266,19 +271,21 @@ public class PersonImpl extends GenealogyElementImpl implements Person {
 	}
 
 	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
+	@Override
 	public int getBirthYear() {
 		return birthYear;
 	}
 
 	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
+	@Override
 	public void setBirthYear(int newBirthYear) {
 		int oldBirthYear = birthYear;
 		birthYear = newBirthYear;
@@ -288,19 +295,21 @@ public class PersonImpl extends GenealogyElementImpl implements Person {
 	}
 
 	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
+	@Override
 	public int getDeathYear() {
 		return deathYear;
 	}
 
 	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
+	@Override
 	public void setDeathYear(int newDeathYear) {
 		int oldDeathYear = deathYear;
 		deathYear = newDeathYear;
@@ -310,10 +319,11 @@ public class PersonImpl extends GenealogyElementImpl implements Person {
 	}
 
 	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
+	@Override
 	public Marriage getMarriage() {
 		if (marriage != null && marriage.eIsProxy()) {
 			InternalEObject oldMarriage = (InternalEObject) marriage;
@@ -328,8 +338,8 @@ public class PersonImpl extends GenealogyElementImpl implements Person {
 	}
 
 	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	public Marriage basicGetMarriage() {
@@ -337,10 +347,11 @@ public class PersonImpl extends GenealogyElementImpl implements Person {
 	}
 
 	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
+	@Override
 	public void setMarriage(Marriage newMarriage) {
 		Marriage oldMarriage = marriage;
 		marriage = newMarriage;
@@ -350,10 +361,11 @@ public class PersonImpl extends GenealogyElementImpl implements Person {
 	}
 
 	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
+	@Override
 	public Marriage getParentsMarriage() {
 		if (parentsMarriage != null && parentsMarriage.eIsProxy()) {
 			InternalEObject oldParentsMarriage = (InternalEObject) parentsMarriage;
@@ -368,8 +380,8 @@ public class PersonImpl extends GenealogyElementImpl implements Person {
 	}
 
 	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	public Marriage basicGetParentsMarriage() {
@@ -377,8 +389,8 @@ public class PersonImpl extends GenealogyElementImpl implements Person {
 	}
 
 	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	public NotificationChain basicSetParentsMarriage(Marriage newParentsMarriage, NotificationChain msgs) {
@@ -396,10 +408,11 @@ public class PersonImpl extends GenealogyElementImpl implements Person {
 	}
 
 	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
+	@Override
 	public void setParentsMarriage(Marriage newParentsMarriage) {
 		if (newParentsMarriage != parentsMarriage) {
 			NotificationChain msgs = null;
@@ -418,10 +431,11 @@ public class PersonImpl extends GenealogyElementImpl implements Person {
 	}
 
 	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
+	@Override
 	public EList<Note> getNote() {
 		if (note == null) {
 			note = new EObjectContainmentEList<Note>(Note.class, this, GenalogyModelPackage.PERSON__NOTE);
@@ -430,8 +444,8 @@ public class PersonImpl extends GenealogyElementImpl implements Person {
 	}
 
 	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	@Override
@@ -451,8 +465,8 @@ public class PersonImpl extends GenealogyElementImpl implements Person {
 	}
 
 	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	@Override
@@ -469,8 +483,8 @@ public class PersonImpl extends GenealogyElementImpl implements Person {
 	}
 
 	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	@Override
@@ -484,8 +498,8 @@ public class PersonImpl extends GenealogyElementImpl implements Person {
 	}
 
 	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	@Override
@@ -516,8 +530,8 @@ public class PersonImpl extends GenealogyElementImpl implements Person {
 	}
 
 	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	@SuppressWarnings("unchecked")
@@ -554,8 +568,8 @@ public class PersonImpl extends GenealogyElementImpl implements Person {
 	}
 
 	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	@Override
@@ -590,8 +604,8 @@ public class PersonImpl extends GenealogyElementImpl implements Person {
 	}
 
 	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	@Override
@@ -618,8 +632,8 @@ public class PersonImpl extends GenealogyElementImpl implements Person {
 	}
 
 	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	@Override
@@ -640,4 +654,28 @@ public class PersonImpl extends GenealogyElementImpl implements Person {
 		return result.toString();
 	}
 
-} //PersonImpl
+	@Override
+	public void addNote(Note note) {
+		// TODO Auto-generated method stub
+
+	}
+
+	@Override
+	public void removeNote(Note note) {
+		// TODO Auto-generated method stub
+
+	}
+
+	@Override
+	public EList<Note> getNotes() {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	@Override
+	public void removeAllNotes() {
+		// TODO Auto-generated method stub
+
+	}
+
+} // PersonImpl

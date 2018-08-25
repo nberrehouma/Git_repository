@@ -1,5 +1,9 @@
 package gef_genealogy_project;
 
+import java.io.IOException;
+import java.util.Collections;
+import java.util.Map;
+
 import org.eclipse.draw2d.ChopboxAnchor;
 import org.eclipse.draw2d.ColorConstants;
 import org.eclipse.draw2d.Connection;
@@ -12,6 +16,13 @@ import org.eclipse.draw2d.XYLayout;
 import org.eclipse.draw2d.geometry.Dimension;
 import org.eclipse.draw2d.geometry.Point;
 import org.eclipse.draw2d.geometry.Rectangle;
+import org.eclipse.emf.common.notify.Adapter;
+import org.eclipse.emf.common.util.URI;
+import org.eclipse.emf.ecore.EObject;
+import org.eclipse.emf.ecore.resource.Resource;
+import org.eclipse.emf.ecore.resource.ResourceSet;
+import org.eclipse.emf.ecore.resource.impl.ResourceSetImpl;
+import org.eclipse.emf.ecore.xmi.impl.XMIResourceFactoryImpl;
 import org.eclipse.swt.SWT;
 import org.eclipse.swt.layout.GridData;
 import org.eclipse.swt.layout.GridLayout;
@@ -20,9 +31,20 @@ import org.eclipse.swt.widgets.Composite;
 import org.eclipse.swt.widgets.Display;
 import org.eclipse.swt.widgets.Shell;
 
+import genalogyModel.GenalogyModelFactory;
+import genalogyModel.GenalogyModelPackage;
+import genalogyModel.GenealogyGraph;
+import genalogyModel.Person;
+import genalogyModel.provider.GenalogyModelItemProviderAdapterFactory;
+
 public class GenealogyView {
 	public static void main(String[] args) {
-		new GenealogyView().run();
+
+		GenealogyView g = new GenealogyView();
+		EObject model = g.createModel();
+		g.save(model);
+
+		g.run();
 	}
 
 	private void run() {
@@ -107,4 +129,59 @@ public class GenealogyView {
 		connection.setTargetAnchor(new ChopboxAnchor(figure2));
 		return connection;
 	}
+
+	public EObject createModel() {
+		GenalogyModelPackage.eINSTANCE.eClass();
+		GenalogyModelFactory factory = GenalogyModelFactory.eINSTANCE;
+		GenalogyModelItemProviderAdapterFactory adapterFactory = new GenalogyModelItemProviderAdapterFactory();
+		GenealogyGraph graph = factory.createGenealogyGraph();
+		Adapter a = adapterFactory.createAdapter(graph);
+		Person person = factory.createPerson();
+		Adapter b = adapterFactory.createAdapter(person);
+		person.eAdapters().add(b);
+		person.setName("nabil");
+		Person person2 = factory.createPerson();
+		person2.eAdapters().add(b);
+		person2.setName("said");
+		person.setGenealogygraph(graph);
+		person2.setGenealogygraph(graph);
+		// graph.getPersons().add(person);
+		// graph.getPersons().add(person2);
+		return graph;
+	}
+
+	public void save(EObject obj) {
+
+		GenalogyModelFactory factory = GenalogyModelFactory.eINSTANCE;
+
+		Resource.Factory.Registry reg = Resource.Factory.Registry.INSTANCE;
+		Map<String, Object> m = reg.getExtensionToFactoryMap();
+		m.put("GenalogyModel", new XMIResourceFactoryImpl());
+
+		// Obtain a new resource set
+		ResourceSet resSet = new ResourceSetImpl();
+		Resource resource = resSet.createResource(URI.createURI("file://e://My.GenalogyModel"));
+		resource.getContents().add(obj);
+		try {
+			resource.save(Collections.EMPTY_MAP);
+		} catch (IOException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+	}
+
+	public EObject load() {
+
+		GenalogyModelFactory factory = GenalogyModelFactory.eINSTANCE;
+
+		Resource.Factory.Registry reg = Resource.Factory.Registry.INSTANCE;
+		Map<String, Object> m = reg.getExtensionToFactoryMap();
+		m.put("GenalogyModel", new XMIResourceFactoryImpl());
+		ResourceSet resSet = new ResourceSetImpl();
+		Resource resource = resSet.getResource(URI.createURI("file://e://My.GenalogyModel"), true);
+		GenealogyGraph graph = (GenealogyGraph) resource.getContents().get(0);
+
+		return graph;
+	}
+
 }
