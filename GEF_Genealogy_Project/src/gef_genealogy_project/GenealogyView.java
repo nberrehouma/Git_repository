@@ -17,12 +17,14 @@ import org.eclipse.draw2d.geometry.Dimension;
 import org.eclipse.draw2d.geometry.Point;
 import org.eclipse.draw2d.geometry.Rectangle;
 import org.eclipse.emf.common.notify.Adapter;
+import org.eclipse.emf.common.notify.Notification;
 import org.eclipse.emf.common.util.URI;
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.resource.Resource;
 import org.eclipse.emf.ecore.resource.ResourceSet;
 import org.eclipse.emf.ecore.resource.impl.ResourceSetImpl;
 import org.eclipse.emf.ecore.xmi.impl.XMIResourceFactoryImpl;
+import org.eclipse.emf.edit.provider.INotifyChangedListener;
 import org.eclipse.swt.SWT;
 import org.eclipse.swt.layout.GridData;
 import org.eclipse.swt.layout.GridLayout;
@@ -76,20 +78,22 @@ public class GenealogyView {
 		LightweightSystem lws = new LightweightSystem(canvas);
 		lws.setContents(root);
 		// Add the father "Andy"
-		IFigure andy = new PersonFigure("Andy", 1922, 2002, "Andy was a\ngood man.");// createPersonFigure("Andy");
+		IFigure andy = new PersonFigure("Andy", 1922, 2002, null);// createPersonFigure("Andy");
 		root.add(andy);
+		andy.add(new NoteFigure("Andy was a\ngood man."));
 		layout.setConstraint(andy, new Rectangle(new Point(10, 10), andy.getPreferredSize()));
 		// Add the mother "Betty"
-		IFigure betty = new PersonFigure("Betty", 1924, 2006, "Betty was a\ngood woman.");// createPersonFigure("Betty");
-
+		IFigure betty = new PersonFigure("Betty", 1924, 2006, null);// createPersonFigure("Betty");
+		betty.add(new NoteFigure("Betty was a\ngood woman."));
 		root.add(betty);
 		layout.setConstraint(betty, new Rectangle(new Point(230, 10), betty.getPreferredSize()));
 		// Add the son "Carl"
-		IFigure carl = new PersonFigure("Carl", 1947, -1, "Carl is a\ngood man.");// createPersonFigure("Carl");
+		IFigure carl = new PersonFigure("Carl", 1947, -1, null);// createPersonFigure("Carl");
+		carl.add(new NoteFigure("Carl is a\ngood man."));
 		root.add(carl);
 		layout.setConstraint(carl, new Rectangle(new Point(120, 120), carl.getPreferredSize()));
 
-		IFigure marriage = new MarriageFigure();// createMarriageFigure();
+		IFigure marriage = new MarriageFigure(1980, null);// createMarriageFigure();
 
 		root.add(marriage, new Rectangle(new Point(145, 35), marriage.getPreferredSize()));
 
@@ -134,9 +138,25 @@ public class GenealogyView {
 		GenalogyModelPackage.eINSTANCE.eClass();
 		GenalogyModelFactory factory = GenalogyModelFactory.eINSTANCE;
 		GenalogyModelItemProviderAdapterFactory adapterFactory = new GenalogyModelItemProviderAdapterFactory();
+
+		adapterFactory.addListener(new INotifyChangedListener() {
+
+			@Override
+			public void notifyChanged(Notification notification) {
+
+				System.out.println("old value" + notification.getOldStringValue() + "\n" + "new value "
+						+ notification.getNewStringValue() + "\n" + "event type " + notification.getEventType()
+						+ "\n feature " + notification.getFeature() + "\n notifier class name "
+						+ notification.getNotifier().getClass().getName() + "\n  position "
+						+ notification.getPosition());
+
+			}
+		});
 		GenealogyGraph graph = factory.createGenealogyGraph();
 		Adapter a = adapterFactory.createAdapter(graph);
+		graph.eAdapters().add(a);
 		Person person = factory.createPerson();
+
 		Adapter b = adapterFactory.createAdapter(person);
 		person.eAdapters().add(b);
 		person.setName("nabil");
@@ -145,8 +165,8 @@ public class GenealogyView {
 		person2.setName("said");
 		person.setGenealogygraph(graph);
 		person2.setGenealogygraph(graph);
-		// graph.getPersons().add(person);
-		// graph.getPersons().add(person2);
+		graph.getPersons().add(person);
+		graph.getPersons().add(person2);
 		return graph;
 	}
 

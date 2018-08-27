@@ -10,19 +10,27 @@ import org.eclipse.draw2d.geometry.Rectangle;
 import org.eclipse.swt.graphics.Pattern;
 import org.eclipse.swt.widgets.Display;
 
+import genalogyModel.Person;
+
 public class PersonFigure extends RectangleFigure {
-	public PersonFigure(String name, int birthYear, int deathYear, String note) {
+
+	Person person;
+	private Label nameFigure;
+
+	public PersonFigure(String name, int birthYear, int deathYear, Person person) {
+		this.person = person;
 		// setBackgroundColor(ColorConstants.lightGray);
 		setLayoutManager(new ToolbarLayout());
 		setPreferredSize(100, 100);
 		setBorder(new LineBorder(1));
-		add(new Label(name));
+
+		nameFigure = new Label(name);
+		add(nameFigure);
 		String datesText = birthYear + " -";
 		if (deathYear != -1)
 			datesText += " " + deathYear;
 		add(new Label(datesText));
 
-		add(new NoteFigure(note));
 		new FigureMover(this);
 	}
 
@@ -42,4 +50,10 @@ public class PersonFigure extends RectangleFigure {
 
 	}
 
+	public void setName(String name)
+
+	{
+
+		nameFigure.setText(name);
+	}
 }

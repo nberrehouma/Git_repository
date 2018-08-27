@@ -10,7 +10,10 @@ Require-Bundle: org.eclipse.ui,
  org.eclipse.draw2d;bundle-version="3.10.100",
  GenalogyModel;bundle-version="0.1.0",
  GenalogyModel.edit;bundle-version="1.0.0",
- org.eclipse.emf.ecore.xmi
+ org.eclipse.emf.ecore.xmi,
+ org.eclipse.emf.edit,
+ GenalogyModel.editor;bundle-version="1.0.0"
 Bundle-RequiredExecutionEnvironment: JavaSE-1.8
 Automatic-Module-Name: GEF_Genealogy_Project
 Bundle-ActivationPolicy: lazy
+Import-Package: genalogyModel.presentation

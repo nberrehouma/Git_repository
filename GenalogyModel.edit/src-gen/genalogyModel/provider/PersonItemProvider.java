@@ -32,7 +32,7 @@ public class PersonItemProvider extends GenealogyElementItemProvider {
 	 */
 	public PersonItemProvider(AdapterFactory adapterFactory) {
 		super(adapterFactory);
-		System.out.println("person observer created");
+
 	}
 
 	/**
@@ -253,9 +253,8 @@ public class PersonItemProvider extends GenealogyElementItemProvider {
 	 */
 	@Override
 	public void notifyChanged(Notification notification) {
+
 		updateChildren(notification);
-		// System.out.println("some thing happen on " + ((Person)
-		// notification.getNotifier()).getName());
 		switch (notification.getFeatureID(Person.class)) {
 		case GenalogyModelPackage.PERSON__NAME: {
 			// System.out.println(notification.getNewStringValue());

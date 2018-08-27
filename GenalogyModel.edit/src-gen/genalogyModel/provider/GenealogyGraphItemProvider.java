@@ -39,7 +39,6 @@ public class GenealogyGraphItemProvider extends ItemProviderAdapter implements I
 	 */
 	public GenealogyGraphItemProvider(AdapterFactory adapterFactory) {
 		super(adapterFactory);
-		System.out.println("graph observer created");
 
 	}
 
@@ -181,7 +180,7 @@ public class GenealogyGraphItemProvider extends ItemProviderAdapter implements I
 	 */
 	@Override
 	public void notifyChanged(Notification notification) {
-		System.out.println("some modification on graph");
+
 		updateChildren(notification);
 
 		switch (notification.getFeatureID(GenealogyGraph.class)) {
