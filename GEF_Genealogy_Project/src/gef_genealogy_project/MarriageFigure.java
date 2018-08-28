@@ -28,6 +28,6 @@ public class MarriageFigure extends PolygonShape {
 // the diamond's right and bottom tips are missing 1 pixel
 		setPreferredSize(r.getSize().expand(1, 1));
 		add(new Label("" + marriageYSear));
-		new FigureMover(this);
+		// new FigureMover(this, marriage);
 	}
 }

@@ -31,7 +31,7 @@ public class PersonFigure extends RectangleFigure {
 			datesText += " " + deathYear;
 		add(new Label(datesText));
 
-		new FigureMover(this);
+		// new FigureMover(this, person);
 	}
 
 	/*

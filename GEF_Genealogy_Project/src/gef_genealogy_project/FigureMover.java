@@ -1,91 +1,69 @@
 package gef_genealogy_project;
 
 import org.eclipse.draw2d.IFigure;
-import org.eclipse.draw2d.LayoutManager;
 import org.eclipse.draw2d.MouseEvent;
 import org.eclipse.draw2d.MouseListener;
 import org.eclipse.draw2d.MouseMotionListener;
-import org.eclipse.draw2d.UpdateManager;
-import org.eclipse.draw2d.geometry.Dimension;
-import org.eclipse.draw2d.geometry.Point;
-import org.eclipse.draw2d.geometry.Rectangle;
+
+import genalogyModel.GenealogyElement;
 
 public class FigureMover implements MouseListener, MouseMotionListener {
-	private final IFigure figure;
-	private Point location;
 
-	public FigureMover(IFigure figure) {
+	private Controller controller;
+	IFigure figure;
+
+	public FigureMover(Controller controller, IFigure figure, GenealogyElement element) {
+		super();
+		this.controller = controller;
+		controller.model2Figure.put(element, figure);
 		this.figure = figure;
-		figure.addMouseListener(this);
-		figure.addMouseMotionListener(this);
 	}
 
 	@Override
-	public void mouseDragged(MouseEvent event) {
-		if (location == null)
-			return;
-		Point newLocation = event.getLocation();
-		if (newLocation == null)
-			return;
-		Dimension offset = newLocation.getDifference(location);
-		if (offset.width == 0 && offset.height == 0)
-			return;
-		location = newLocation;
-		UpdateManager updateMgr = figure.getUpdateManager();
-		LayoutManager layoutMgr = figure.getParent().getLayoutManager();
-		Rectangle bounds = figure.getBounds();
-		updateMgr.addDirtyRegion(figure.getParent(), bounds);
-		bounds = bounds.getCopy().translate(offset.width, offset.height);
-		layoutMgr.setConstraint(figure, bounds);
-		figure.translate(offset.width, offset.height);
-		updateMgr.addDirtyRegion(figure.getParent(), bounds);
-		event.consume();
+	public void mouseDragged(MouseEvent me) {
+		controller.mouseDragged(figure, me);
 
 	}
 
 	@Override
 	public void mouseEntered(MouseEvent me) {
-		// TODO Auto-generated method stub
+		controller.mouseEntered(figure, me);
 
 	}
 
 	@Override
 	public void mouseExited(MouseEvent me) {
-		// TODO Auto-generated method stub
+		controller.mouseExited(figure, me);
 
 	}
 
 	@Override
 	public void mouseHover(MouseEvent me) {
-		// TODO Auto-generated method stub
+		controller.mouseHover(figure, me);
 
 	}
 
 	@Override
 	public void mouseMoved(MouseEvent me) {
-		// TODO Auto-generated method stub
+		controller.mouseMoved(figure, me);
 
 	}
 
 	@Override
-	public void mousePressed(MouseEvent event) {
-		location = event.getLocation();
-		System.out.println("from " + location);
-		event.consume();
+	public void mousePressed(MouseEvent me) {
+		controller.mousePressed(figure, me);
 
 	}
 
 	@Override
-	public void mouseReleased(MouseEvent event) {
-		if (location == null)
-			return;
-		System.out.println("to " + location);
-		location = null;
-		event.consume();
+	public void mouseReleased(MouseEvent me) {
+		controller.mouseReleased(figure, me);
+
 	}
 
 	@Override
 	public void mouseDoubleClicked(MouseEvent me) {
+		controller.mouseDoubleClicked(figure, me);
 
 	}
 
