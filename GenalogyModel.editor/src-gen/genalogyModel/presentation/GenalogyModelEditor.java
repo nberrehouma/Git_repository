@@ -119,8 +119,14 @@ import org.eclipse.ui.views.contentoutline.IContentOutlinePage;
 import org.eclipse.ui.views.properties.IPropertySheetPage;
 import org.eclipse.ui.views.properties.PropertySheet;
 import org.eclipse.ui.views.properties.PropertySheetPage;
+import org.eclipse.zest.core.viewers.GraphViewer;
+import org.eclipse.zest.layouts.LayoutStyles;
+import org.eclipse.zest.layouts.algorithms.TreeLayoutAlgorithm;
 
+import genalogyModel.GenealogyGraph;
 import genalogyModel.provider.GenalogyModelItemProviderAdapterFactory;
+import model.GenealogyZestContentProvider;
+import model.GenealogyZestLabelProvider;
 
 /**
  * This is an example of a GenalogyModel model editor. <!-- begin-user-doc -->
@@ -986,6 +992,40 @@ public class GenalogyModelEditor extends MultiPageEditorPart
 		if (!getEditingDomain().getResourceSet().getResources().isEmpty()) {
 			// Create a page for the selection tree view.
 			//
+
+			{
+
+				ViewerPane viewerPane = new ViewerPane(getSite().getPage(), GenalogyModelEditor.this) {
+					@Override
+					public Viewer createViewer(Composite composite) {
+						GraphViewer viewer = new GraphViewer(composite, SWT.NONE);
+						return viewer;
+					}
+
+					@Override
+					public void requestActivation() {
+						super.requestActivation();
+						setCurrentViewerPane(this);
+					}
+				};
+				viewerPane.createControl(getContainer());
+				GraphViewer graphViewer = (GraphViewer) viewerPane.getViewer();
+
+				ResourceSet set = this.getEditingDomain().getResourceSet();
+
+				Resource res = set.getResources().get(0);
+				GenealogyGraph graph = (GenealogyGraph) res.getContents().get(0);
+
+				graphViewer.setContentProvider(new GenealogyZestContentProvider());
+				graphViewer.setLabelProvider(new GenealogyZestLabelProvider());
+				graphViewer.setLayoutAlgorithm(new TreeLayoutAlgorithm(LayoutStyles.NO_LAYOUT_NODE_RESIZING));
+				graphViewer.setInput(graph);
+
+				int pageIndex = addPage(viewerPane.getControl());
+				setPageText(pageIndex, "graphical viewer");
+
+			}
+
 			{
 				ViewerPane viewerPane = new ViewerPane(getSite().getPage(), GenalogyModelEditor.this) {
 					@Override

@@ -28,7 +28,7 @@ import org.eclipse.emf.common.util.EList;
  * @model
  * @generated NOT
  */
-public interface Person extends GenealogyElement, NoteContainer {
+public interface Person extends GenealogyElement {
 	/**
 	 * Returns the value of the '<em><b>Genealogygraph</b></em>' container
 	 * reference. It is bidirectional and its opposite is

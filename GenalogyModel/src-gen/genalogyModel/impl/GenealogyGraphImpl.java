@@ -246,22 +246,4 @@ public class GenealogyGraphImpl extends MinimalEObjectImpl.Container implements 
 		return super.eIsSet(featureID);
 	}
 
-	@Override
-	public void addNote(Note note) {
-		// TODO Auto-generated method stub
-
-	}
-
-	@Override
-	public void removeNote(Note note) {
-		// TODO Auto-generated method stub
-
-	}
-
-	@Override
-	public void removeAllNotes() {
-		// TODO Auto-generated method stub
-
-	}
-
 } // GenealogyGraphImpl

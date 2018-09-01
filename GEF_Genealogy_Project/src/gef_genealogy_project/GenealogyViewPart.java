@@ -33,6 +33,10 @@ import org.eclipse.ui.IEditorPart;
 import org.eclipse.ui.PlatformUI;
 import org.eclipse.ui.part.ViewPart;
 
+import figures.FigureMover;
+import figures.MarriageFigure;
+import figures.NoteFigure;
+import figures.PersonFigure;
 import genalogyModel.GenalogyModelFactory;
 import genalogyModel.GenalogyModelPackage;
 import genalogyModel.GenealogyGraph;
@@ -70,6 +74,7 @@ public class GenealogyViewPart extends ViewPart {
 		if (editorPart instanceof genalogyModel.presentation.GenalogyModelEditor) {
 
 			final EditingDomain domain = ((IEditingDomainProvider) editorPart).getEditingDomain();
+
 			ResourceSet set = domain.getResourceSet();
 			// set.eAdapters().add(controller);
 			Resource res = set.getResources().get(0);

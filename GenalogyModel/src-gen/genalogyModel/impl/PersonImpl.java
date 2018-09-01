@@ -654,28 +654,4 @@ public class PersonImpl extends GenealogyElementImpl implements Person {
 		return result.toString();
 	}
 
-	@Override
-	public void addNote(Note note) {
-		// TODO Auto-generated method stub
-
-	}
-
-	@Override
-	public void removeNote(Note note) {
-		// TODO Auto-generated method stub
-
-	}
-
-	@Override
-	public EList<Note> getNotes() {
-		// TODO Auto-generated method stub
-		return null;
-	}
-
-	@Override
-	public void removeAllNotes() {
-		// TODO Auto-generated method stub
-
-	}
-
 } // PersonImpl

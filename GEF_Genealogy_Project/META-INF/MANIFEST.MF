@@ -11,9 +11,11 @@ Require-Bundle: org.eclipse.ui,
  GenalogyModel;bundle-version="0.1.0",
  GenalogyModel.edit;bundle-version="1.0.0",
  org.eclipse.emf.ecore.xmi,
- org.eclipse.emf.edit,
- GenalogyModel.editor;bundle-version="1.0.0"
+ org.eclipse.emf.edit
 Bundle-RequiredExecutionEnvironment: JavaSE-1.8
 Automatic-Module-Name: GEF_Genealogy_Project
 Bundle-ActivationPolicy: lazy
-Import-Package: genalogyModel.presentation
+Import-Package: genalogyModel.presentation,
+ org.eclipse.gef
+Export-Package: figures,
+ gef_genealogy_project

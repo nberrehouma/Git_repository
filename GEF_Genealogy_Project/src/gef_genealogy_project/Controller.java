@@ -15,14 +15,16 @@ import org.eclipse.draw2d.geometry.Rectangle;
 import org.eclipse.emf.common.notify.Notification;
 import org.eclipse.emf.edit.provider.INotifyChangedListener;
 
+import figures.PersonFigure;
 import genalogyModel.GenealogyElement;
 import genalogyModel.Person;
 import genalogyModel.impl.GenalogyModelPackageImpl;
 
-class Controller implements INotifyChangedListener {
+public class Controller implements INotifyChangedListener {
 
 	private Point location;
-	Map<GenealogyElement, IFigure> model2Figure;
+	public Map<GenealogyElement, IFigure> model2Figure;
+	private GenealogyElement element;
 
 	public Controller() {
 		super();
@@ -43,10 +45,13 @@ class Controller implements INotifyChangedListener {
 			}
 
 		}
-		System.out.println("old value" + notification.getOldStringValue() + "\n" + "new value "
-				+ notification.getNewStringValue() + "\n" + "event type " + notification.getEventType() + "\n feature "
-				+ notification.getFeature() + "\n notifier class name "
-				+ notification.getNotifier().getClass().getName() + "\n  position " + notification.getPosition());
+		/*
+		 * System.out.println("old value" + notification.getOldStringValue() + "\n" +
+		 * "new value " + notification.getNewStringValue() + "\n" + "event type " +
+		 * notification.getEventType() + "\n feature " + notification.getFeature() +
+		 * "\n notifier class name " + notification.getNotifier().getClass().getName() +
+		 * "\n  position " + notification.getPosition());
+		 */
 
 	}
 
@@ -94,22 +99,31 @@ class Controller implements INotifyChangedListener {
 	}
 
 	public void mousePressed(IFigure figure, MouseEvent event) {
-		location = event.getLocation();
-		GenealogyElement element = getKeyByValue(model2Figure, figure);
-		element.setX(location.x());
-		element.setY(location.y());
-		System.out.println("from  " + element.getX() + " **** " + element.getY());
 
+		location = event.getLocation();
+		element = getKeyByValue(model2Figure, figure);
 		event.consume();
 	}
 
 	public void mouseReleased(IFigure figure, MouseEvent event) {
+
 		if (location == null)
 			return;
-		GenealogyElement element = getKeyByValue(model2Figure, figure);
+
 		element.setX(location.x());
 		element.setY(location.y());
-		System.out.println("to  " + element.getX() + " **** " + element.getY());
+
+		/*
+		 * try {
+		 * 
+		 * element.eResource().save(Collections.EMPTY_MAP); } catch (Exception e) {
+		 * System.out.println("can't save " + (element == null) + "-------------");
+		 * 
+		 * }
+		 */
+
+		System.out.println("(" + element.getX() + "," + element.getY() + ")");
+		element = null;
 		location = null;
 		event.consume();
 

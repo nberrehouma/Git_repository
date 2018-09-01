@@ -1,4 +1,4 @@
-package gef_genealogy_project;
+package figures;
 
 import org.eclipse.draw2d.AbstractBorder;
 import org.eclipse.draw2d.ColorConstants;

@@ -22,7 +22,7 @@ import org.eclipse.emf.ecore.EObject;
  * @model
  * @generated NOT
  */
-public interface GenealogyGraph extends EObject, NoteContainer {
+public interface GenealogyGraph extends EObject {
 	/**
 	 * Returns the value of the '<em><b>Persons</b></em>' containment reference
 	 * list. The list contents are of type {@link genalogyModel.Person}. It is
@@ -60,7 +60,6 @@ public interface GenealogyGraph extends EObject, NoteContainer {
 	 * @model opposite="genealogygraph" containment="true"
 	 * @generated
 	 */
-	@Override
 	EList<Note> getNotes();
 
 	/**

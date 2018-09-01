@@ -1,10 +1,11 @@
-package gef_genealogy_project;
+package figures;
 
 import org.eclipse.draw2d.IFigure;
 import org.eclipse.draw2d.MouseEvent;
 import org.eclipse.draw2d.MouseListener;
 import org.eclipse.draw2d.MouseMotionListener;
 
+import gef_genealogy_project.Controller;
 import genalogyModel.GenealogyElement;
 
 public class FigureMover implements MouseListener, MouseMotionListener {
@@ -17,6 +18,8 @@ public class FigureMover implements MouseListener, MouseMotionListener {
 		this.controller = controller;
 		controller.model2Figure.put(element, figure);
 		this.figure = figure;
+		figure.addMouseListener(this);
+		figure.addMouseMotionListener(this);
 	}
 
 	@Override
@@ -51,6 +54,7 @@ public class FigureMover implements MouseListener, MouseMotionListener {
 
 	@Override
 	public void mousePressed(MouseEvent me) {
+
 		controller.mousePressed(figure, me);
 
 	}
