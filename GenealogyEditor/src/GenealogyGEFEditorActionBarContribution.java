@@ -1,4 +1,10 @@
 import org.eclipse.gef.ui.actions.ActionBarContributor;
+import org.eclipse.gef.ui.actions.DeleteRetargetAction;
+import org.eclipse.gef.ui.actions.RedoRetargetAction;
+import org.eclipse.gef.ui.actions.UndoRetargetAction;
+import org.eclipse.jface.action.IToolBarManager;
+import org.eclipse.ui.actions.ActionFactory;
+import org.eclipse.ui.actions.LabelRetargetAction;
 
 public class GenealogyGEFEditorActionBarContribution extends ActionBarContributor {
 
@@ -8,7 +14,10 @@ public class GenealogyGEFEditorActionBarContribution extends ActionBarContributo
 
 	@Override
 	protected void buildActions() {
-		// TODO Auto-generated method stub
+		addRetargetAction(new UndoRetargetAction());
+		addRetargetAction(new RedoRetargetAction());
+		addRetargetAction(new DeleteRetargetAction());
+		addRetargetAction(new LabelRetargetAction(ActionFactory.SELECT_ALL.getId(), "Select All"));
 
 	}
 
@@ -18,4 +27,9 @@ public class GenealogyGEFEditorActionBarContribution extends ActionBarContributo
 
 	}
 
+	@Override
+	public void contributeToToolBar(IToolBarManager toolBarManager) {
+		toolBarManager.add(getAction(ActionFactory.UNDO.getId()));
+		toolBarManager.add(getAction(ActionFactory.REDO.getId()));
+	}
 }

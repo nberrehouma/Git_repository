@@ -1,13 +1,15 @@
 import java.io.IOException;
 import java.util.Collections;
+import java.util.EventObject;
 import java.util.Iterator;
 import java.util.List;
 import java.util.Map;
 
 import org.eclipse.core.resources.IFile;
+import org.eclipse.core.resources.ResourcesPlugin;
+import org.eclipse.core.runtime.IPath;
 import org.eclipse.core.runtime.IProgressMonitor;
 import org.eclipse.emf.common.notify.Adapter;
-import org.eclipse.emf.common.util.EList;
 import org.eclipse.emf.common.util.URI;
 import org.eclipse.emf.ecore.resource.Resource;
 import org.eclipse.emf.ecore.resource.impl.ResourceSetImpl;
@@ -18,18 +20,20 @@ import org.eclipse.gef.GraphicalViewer;
 import org.eclipse.gef.editparts.ScalableFreeformRootEditPart;
 import org.eclipse.gef.palette.PaletteRoot;
 import org.eclipse.gef.ui.parts.GraphicalEditorWithFlyoutPalette;
-import org.eclipse.gef.ui.parts.SelectionSynchronizer;
+import org.eclipse.gef.ui.parts.GraphicalViewerKeyHandler;
 import org.eclipse.jface.viewers.ISelectionChangedListener;
 import org.eclipse.jface.viewers.IStructuredSelection;
 import org.eclipse.jface.viewers.SelectionChangedEvent;
 import org.eclipse.ui.IEditorInput;
+import org.eclipse.ui.IEditorPart;
 import org.eclipse.ui.IFileEditorInput;
+import org.eclipse.ui.dialogs.SaveAsDialog;
+import org.eclipse.ui.part.FileEditorInput;
 
 import gef_genealogy_project.Controller;
 import genalogyModel.GenalogyModelFactory;
 import genalogyModel.GenalogyModelPackage;
 import genalogyModel.GenealogyGraph;
-import genalogyModel.Person;
 import genalogyModel.provider.GenalogyModelItemProviderAdapterFactory;
 
 public class GenealogyGEFEditor extends GraphicalEditorWithFlyoutPalette {
@@ -44,11 +48,12 @@ public class GenealogyGEFEditor extends GraphicalEditorWithFlyoutPalette {
 	private GraphicalViewer viewer;
 
 	public GenealogyGEFEditor() {
-		// initialisation du gestionnaire de persistance des modèles EMF
+
 		setEditDomain(new DefaultEditDomain(this));
+		// initialisation du gestionnaire de persistance des modèles EMF
 		GenalogyModelPackage.eINSTANCE.eClass();
 		adapterFactory = new GenalogyModelItemProviderAdapterFactory();
-		adapterFactory.addListener(controller);
+		// adapterFactory.addListener(controller);
 		factory = GenalogyModelFactory.eINSTANCE;
 		reg = Resource.Factory.Registry.INSTANCE;
 		m = reg.getExtensionToFactoryMap();
@@ -62,8 +67,7 @@ public class GenealogyGEFEditor extends GraphicalEditorWithFlyoutPalette {
 
 	@Override
 	protected PaletteRoot getPaletteRoot() {
-		// TODO Auto-generated method stub
-		return null;
+		return GenealogyGraphEditorPaletteFactory.createPalette();
 	}
 
 	@Override
@@ -71,14 +75,26 @@ public class GenealogyGEFEditor extends GraphicalEditorWithFlyoutPalette {
 
 		IEditorInput editorInput = this.getEditorInput();
 		IFile file = ((IFileEditorInput) editorInput).getFile();
-
 		save("file://" + ((IFileEditorInput) editorInput).getFile().getLocation().toString());
-
+		getCommandStack().markSaveLocation();
+		firePropertyChange(PROP_DIRTY);
+		System.out.println("content saved");
 	}
 
 	@Override
 	public void doSaveAs() {
-		super.doSaveAs();
+		SaveAsDialog dialog = new SaveAsDialog(getSite().getShell());
+		dialog.setOriginalFile(((IFileEditorInput) getEditorInput()).getFile());
+
+		dialog.open();
+		IPath path = dialog.getResult();
+		if (path == null)
+			return;
+		IFile file = ResourcesPlugin.getWorkspace().getRoot().getFile(path);
+		super.setInput(new FileEditorInput(file));
+		doSave(null);
+		setPartName(file.getName());
+		firePropertyChange(PROP_INPUT);
 	}
 
 	@Override
@@ -94,7 +110,9 @@ public class GenealogyGEFEditor extends GraphicalEditorWithFlyoutPalette {
 
 			@Override
 			public void selectionChanged(SelectionChangedEvent event) {
-				List<EditPart> selection = ((IStructuredSelection) event.getSelection()).toList();
+				IStructuredSelection iStructuredSelection = (IStructuredSelection) event.getSelection();
+				@SuppressWarnings("unchecked")
+				List<EditPart> selection = iStructuredSelection.toList();
 				Iterator<EditPart> it = selection.iterator();
 				while (it.hasNext()) {
 					EditPart element = it.next();
@@ -104,6 +122,7 @@ public class GenealogyGEFEditor extends GraphicalEditorWithFlyoutPalette {
 
 			}
 		});
+		viewer.setKeyHandler(new GraphicalViewerKeyHandler(viewer));
 	}
 
 	public void save(String file) {
@@ -122,16 +141,16 @@ public class GenealogyGEFEditor extends GraphicalEditorWithFlyoutPalette {
 
 		Resource resource = resSet.getResource(URI.createURI(file), true);
 		graph = (GenealogyGraph) resource.getContents().get(0);
-		Adapter a = adapterFactory.createAdapter(graph);
+		// Adapter a = adapterFactory.createAdapter(graph);
 
-		graph.eAdapters().add(a);
-		EList<Person> persons = graph.getPersons();
-		Iterator<Person> it = persons.iterator();
-		while (it.hasNext()) {
-			Person person = it.next();
-			person.eAdapters().add(adapterFactory.createAdapter(person));
-
-		}
+		// graph.eAdapters().add(a);
+		/*
+		 * EList<Person> persons = graph.getPersons(); Iterator<Person> it =
+		 * persons.iterator(); while (it.hasNext()) { Person person = it.next();
+		 * person.eAdapters().add(adapterFactory.createAdapter(person));
+		 * 
+		 * }
+		 */
 
 	}
 
@@ -176,13 +195,24 @@ public class GenealogyGEFEditor extends GraphicalEditorWithFlyoutPalette {
 	/*
 	 * (non-Javadoc)
 	 * 
-	 * @see org.eclipse.gef.ui.parts.GraphicalEditor#getSelectionSynchronizer()
+	 * @see org.eclipse.gef.ui.parts.GraphicalEditor#commandStackChanged(java.util.
+	 * EventObject)
 	 */
 	@Override
-	protected SelectionSynchronizer getSelectionSynchronizer() {
-		SelectionSynchronizer syn = new SelectionSynchronizer();
-		syn.addViewer(viewer);
-		return syn;
+	public void commandStackChanged(EventObject event) {
+		firePropertyChange(IEditorPart.PROP_DIRTY);
+		super.commandStackChanged(event);
+	}
+
+	/*
+	 * (non-Javadoc)
+	 * 
+	 * @see org.eclipse.gef.ui.parts.GraphicalEditor#isSaveAsAllowed()
+	 */
+	@Override
+	public boolean isSaveAsAllowed() {
+		// TODO Auto-generated method stub
+		return true;
 	}
 
 }

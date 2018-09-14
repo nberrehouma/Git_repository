@@ -1,0 +1,54 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ecore:EPackage xmi:version="2.0" xmlns:xmi="http://www.omg.org/XMI" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xmlns:ecore="http://www.eclipse.org/emf/2002/Ecore" name="graph" nsURI="http://www.berrehoumanabil.org/graph" nsPrefix="graph">
+  <eClassifiers xsi:type="ecore:EClass" name="Graph" eSuperTypes="#//Named">
+    <eStructuralFeatures xsi:type="ecore:EReference" name="edges" upperBound="-1"
+        eType="#//Edge" containment="true" eOpposite="#//Edge/graph"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="vertices" upperBound="-1"
+        eType="#//Vertex" containment="true" eOpposite="#//Vertex/graph"/>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="direct" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EBoolean"
+        defaultValueLiteral="true"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="Vertex" eSuperTypes="#//GraphElement">
+    <eStructuralFeatures xsi:type="ecore:EReference" name="graph" eType="#//Graph"
+        eOpposite="#//Graph/vertices"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="label" eType="#//Label"
+        containment="true" eOpposite="#//Label/vertex"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="outgoingEdges" upperBound="-1"
+        eType="#//Edge" eOpposite="#//Edge/SourceVertex"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="ingoingEdges" upperBound="-1"
+        eType="#//Edge" eOpposite="#//Edge/targetVertex"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="Edge" eSuperTypes="#//Typed">
+    <eStructuralFeatures xsi:type="ecore:EReference" name="graph" eType="#//Graph"
+        eOpposite="#//Graph/edges"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="label" eType="#//Label"
+        containment="true" eOpposite="#//Label/edge"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="SourceVertex" lowerBound="1"
+        eType="#//Vertex" eOpposite="#//Vertex/outgoingEdges"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="targetVertex" lowerBound="1"
+        eType="#//Vertex" eOpposite="#//Vertex/ingoingEdges"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="Label" eSuperTypes="#//Named">
+    <eStructuralFeatures xsi:type="ecore:EReference" name="edge" eType="#//Edge" eOpposite="#//Edge/label"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="vertex" eType="#//Vertex"
+        eOpposite="#//Vertex/label"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="entries" upperBound="-1"
+        eType="#//Entry" containment="true" eOpposite="#//Entry/label"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="Entry">
+    <eStructuralFeatures xsi:type="ecore:EReference" name="label" eType="#//Label"
+        eOpposite="#//Label/entries"/>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="key" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="value" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EJavaObject"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="Named" abstract="true">
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="name" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="Typed" abstract="true" eSuperTypes="#//Named">
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="type" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EJavaClass"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="GraphElement" abstract="true" eSuperTypes="#//Typed">
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="id" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EInt"/>
+  </eClassifiers>
+</ecore:EPackage>

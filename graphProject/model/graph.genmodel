@@ -1,0 +1,50 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<genmodel:GenModel xmi:version="2.0" xmlns:xmi="http://www.omg.org/XMI" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xmlns:ecore="http://www.eclipse.org/emf/2002/Ecore" xmlns:genmodel="http://www.eclipse.org/emf/2002/GenModel"
+    modelDirectory="/graphProject/src-gen" creationIcons="false" editDirectory="/graphProject.edit/src-gen"
+    editorDirectory="/graphProject.editor/src-gen" modelPluginID="graphProject" modelName="Graph"
+    rootExtendsClass="org.eclipse.emf.ecore.impl.MinimalEObjectImpl$Container" codeFormatting="true"
+    importerID="org.eclipse.emf.importer.ecore" complianceLevel="8.0" copyrightFields="false"
+    operationReflection="true" importOrganizing="true">
+  <foreignModel>graph.ecore</foreignModel>
+  <testsDirectory xsi:nil="true"/>
+  <genPackages prefix="Graph" basePackage="graphproject" disposableProviderFactory="true"
+      ecorePackage="graph.ecore#/">
+    <genClasses ecoreClass="graph.ecore#//Graph">
+      <genFeatures children="true" createChild="true" propertySortChoices="true" ecoreFeature="ecore:EReference graph.ecore#//Graph/edges"/>
+      <genFeatures children="true" createChild="true" propertySortChoices="true" ecoreFeature="ecore:EReference graph.ecore#//Graph/vertices"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute graph.ecore#//Graph/direct"/>
+    </genClasses>
+    <genClasses ecoreClass="graph.ecore#//Vertex">
+      <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference graph.ecore#//Vertex/graph"/>
+      <genFeatures children="true" createChild="true" propertySortChoices="true" ecoreFeature="ecore:EReference graph.ecore#//Vertex/label"/>
+      <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference graph.ecore#//Vertex/outgoingEdges"/>
+      <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference graph.ecore#//Vertex/ingoingEdges"/>
+    </genClasses>
+    <genClasses ecoreClass="graph.ecore#//Edge">
+      <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference graph.ecore#//Edge/graph"/>
+      <genFeatures children="true" createChild="true" propertySortChoices="true" ecoreFeature="ecore:EReference graph.ecore#//Edge/label"/>
+      <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference graph.ecore#//Edge/SourceVertex"/>
+      <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference graph.ecore#//Edge/targetVertex"/>
+    </genClasses>
+    <genClasses ecoreClass="graph.ecore#//Label">
+      <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference graph.ecore#//Label/edge"/>
+      <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference graph.ecore#//Label/vertex"/>
+      <genFeatures children="true" createChild="true" propertySortChoices="true" ecoreFeature="ecore:EReference graph.ecore#//Label/entries"/>
+    </genClasses>
+    <genClasses ecoreClass="graph.ecore#//Entry">
+      <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference graph.ecore#//Entry/label"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute graph.ecore#//Entry/key"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute graph.ecore#//Entry/value"/>
+    </genClasses>
+    <genClasses ecoreClass="graph.ecore#//Named">
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute graph.ecore#//Named/name"/>
+    </genClasses>
+    <genClasses ecoreClass="graph.ecore#//Typed">
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute graph.ecore#//Typed/type"/>
+    </genClasses>
+    <genClasses ecoreClass="graph.ecore#//GraphElement">
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute graph.ecore#//GraphElement/id"/>
+    </genClasses>
+  </genPackages>
+</genmodel:GenModel>
